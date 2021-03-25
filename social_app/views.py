@@ -8,7 +8,7 @@ class ProfileView(generic.ListView):
     model = Profile
     template_name = 'social_app/profile.html'
     def get_context_data(self,*args,**kwargs):
-        exist=Profile.objects.filter(user=self.request.user).exists()
-        context=super(ProfileView,self).get_context_data(*args,**kwargs)
+        exist = Profile.objects.filter(user=self.request.user).exists()
+        context = super(ProfileView,self).get_context_data(*args,**kwargs)
         context['exist'] = exist
         return context
