@@ -151,3 +151,5 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile' # just added, not sure
