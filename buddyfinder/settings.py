@@ -27,7 +27,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -35,13 +35,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django.contrib.sites',   # <--
-    'social_app',   # <--
-    'allauth',   # <--
-    'allauth.account',   # <--
-    'allauth.socialaccount',   # <--
-    'allauth.socialaccount.providers.google',   # <--
-]
+    'django.contrib.sites',  # <--
+    'social_app',  # <--
+    'allauth',  # <--
+    'allauth.account',  # <--
+    'allauth.socialaccount',  # <--
+    'allauth.socialaccount.providers.google',  # <--
+    'multiselectfield',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
