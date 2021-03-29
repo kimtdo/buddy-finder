@@ -5,13 +5,23 @@
 </head>
 <body>
     {% if exist %}
-    <h>YOU HAVE A PROFILE</h>
+        {% if user.isReported %} <!--Not working-->
+            <h3>You have been reported. Your profile no longer exists.</h3>
+        {% else %}
+            <h3>YOU HAVE A PROFILE</h3> <!--temp placeholder-->
+            <div class="container-fluid">
+                <!--Display profile here-->
+                <!--Add Report button here-->
+            </div>
+        {% endif %}
     {% else %}
-    <h>CREATE PROFILE</h>
+        <h3>CREATE PROFILE</h3>
+        <div class="container-fluid">
+            <!--Add form here to take in info for profile-->
+        </div>
     {% endif %}
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
