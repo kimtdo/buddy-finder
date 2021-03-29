@@ -8,5 +8,5 @@ class Profile(models.Model):
     bio = models.CharField(max_length=1000, null=True, blank=True)
     gender = models.CharField(max_length=140, null=True, blank=True) 
     profile_pic =  models.ImageField(upload_to='social_app/images', blank=True)
-    isCompleted = models.BooleanField(default=False)
+    isReported = models.BooleanField(default=False)
 
