@@ -3,6 +3,9 @@ from django.views.generic import TemplateView, ListView, DetailView,CreateView,F
 from .models import *
 from django.views import generic
 
+from social_app.models import Profile
+
+
 # Create your views here.
 class ProfileView(generic.ListView):
     model = Profile
