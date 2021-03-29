@@ -1,9 +1,9 @@
 {% load socialaccount %}
 <html>
-  <head>
-    <title>Google Registration</title>
-  </head>
-  <body>
+<head>
+  <title>Google Registration</title>
+</head>
+<body>
   {% if user.is_authenticated %}
   <h1>Buddy Finder App</h1>
   <p>Welcome, {{ user.username }}! You have successfully logged in.</p>
@@ -15,5 +15,5 @@
   <h1>Buddy Finder App</h1>
   <a href="{% provider_login_url 'google' %}">Login with Google</a>
   {% endif %}
-  </body>
+</body>
 </html>
