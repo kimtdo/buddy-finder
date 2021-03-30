@@ -10,6 +10,7 @@
         {% else %}
             <h3>YOU HAVE A PROFILE</h3> <!--temp placeholder-->
             <div class="container-fluid">
+                {{ form }}
                 <!--Display profile here-->
                 <!--Add Report button here-->
             </div>
@@ -17,7 +18,8 @@
     {% else %}
         <h3>CREATE PROFILE</h3>
         <div class="container-fluid">
-
+            {{ form }}
+            <input type="submit">
         </div>
             <!--Add form here to take in info for profile-->
     {% endif %}
