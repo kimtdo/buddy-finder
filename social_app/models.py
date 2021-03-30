@@ -23,6 +23,6 @@ class Profile(models.Model):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        exclude = ['isReported']
+        exclude = ['user','isReported']
 
 
