@@ -1,0 +1,23 @@
+{ % extends profile.html }
+{% block content %}
+{% for profile in profiles %}
+<div class="card" style="width: 18rem;">
+    {% if profile.profile_pic.url %}
+    <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
+    {% endif %}
+    <div class="card-body">
+        <h3 class="card-title">{{ profile.user.get_full_name }}</h3>
+        <h5>{{ profile.gender }}</h5>
+        <p class="card-text">{{ profile.interests }}</p>
+        <p class="card-text">{{ profile.bio }}</p>
+        <!--Add Report button here-->
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name='user' value='{{ profile.user }}'></input>
+            <input type="submit" value='Report' class="btn btn-warning"></input>
+        </form>
+    </div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}
