@@ -18,8 +18,22 @@
     {% else %}
         <h3>CREATE PROFILE</h3>
         <div class="container-fluid">
-            {{ form }}
+            <form action="display" method="post">
+                {% csrf_token %}
+                <label for="name">Enter name: </label>
+                <input id="name" type="text" name="name" value="">
+                <label for="bio">Enter bio: </label>
+            <input id="bio" type="text" name="bio" value="">
+                <label for="gender">Enter gender: </label>
+                <input id="gender" type="text" name="gender" value="">
+                {% for value, text in form.interests.field.choices %}
+                <div class="ui slider checkbox">
+                <input id="id_interests_{{ forloop.counter0 }}" name="{{ form.interests.name }}" type="checkbox" value="{{ value }}"{% if value in checked_interests %} checked="checked"{% endif %}>
+                <label>{{ text }}</label>
+                </div>
+                {% endfor %}
             <input type="submit">
+            </form>
         </div>
             <!--Add form here to take in info for profile-->
     {% endif %}
