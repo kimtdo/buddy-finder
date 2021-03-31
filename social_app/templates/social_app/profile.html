@@ -11,32 +11,13 @@
             <h3>YOU HAVE A PROFILE</h3> <!--temp placeholder-->
             <div class="container-fluid">
                 <!--Display profile here-->
-                {% for profile in profiles %}
-                    <div class="card" style="width: 18rem;">
-                        {% if profile.profile_pic.url %}
-                            <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
-                        {% endif %}
-                        <div class="card-body">
-                            <h3 class="card-title">{{ profile.user.get_full_name }}</h3>
-                            <h5>{{ profile.gender }}</h5>
-                            <p class="card-text">{{ profile.bio }}</p>
-                            <a href="#" class="btn btn-warning">Report</a>
-                        </div>
-                    </div>
-                    <!--Add Report button here-->
-                    <!-- <form method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name='user' value='{{ profile.user }}'></input>
-                        <input type="submit" value='Report'></input>
-                    </form> -->
-                    <br>
-                {% endfor %}
+                <!--Add Report button here-->
             </div>
         {% endif %}
     {% else %}
         <h3>CREATE PROFILE</h3>
         <div class="container-fluid">
-            <!--Create profile here-->
+            <!--Add form here to take in info for profile-->
         </div>
     {% endif %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -44,30 +25,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<!-- <form method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-        <label>GENDER</label>
-        <input type="text" class="form-control" name="gender" required="required">
-    </div><br>
-    <div class="form-group">
-        <label>BIO</label>
-        <input type="text" class="form-control" name="bio" required="required">
-    </div><br>
-    <div class="form-group">
-        <label>INTERESTS</label><br>
-        <input type="checkbox" name="interests" id="interest1">
-        <label for="interest1">Interest 1</label><br>
-        <input type="checkbox" name="interests" id="interest2">
-        <label for="interest2">Interest 2</label><br>
-        <input type="checkbox" name="interests" id="interest3">
-        <label for="interest3">Interest 3</label><br>
-    </div><br>
-    <div class="form-group">
-        <label>PROFILE PICTURE</label><br>
-        <input type="file" name="img" accept="image/*">
-    </div><br>
-    <br/>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
