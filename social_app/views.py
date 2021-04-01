@@ -18,6 +18,7 @@ class ProfileView(ListView):
         return context
     def post(self,request,*args,**kwargs):
         if self.request.method=='POST':
+            n = self.request.POST.get('name')
             a = self.request.POST.get('gender')
             b = self.request.POST.get('bio')
             c = self.request.POST.get('interests')
