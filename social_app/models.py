@@ -9,6 +9,7 @@ interest = (('item_key1', 'Item title 1.1'),
             ('item_key5', 'Item title 1.5'))
 
 class Profile(models.Model):
+    name = models.CharField(max_length=140, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=140, null=True, blank=True) 
     bio = models.CharField(max_length=1000, null=True, blank=True)
