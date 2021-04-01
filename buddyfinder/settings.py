@@ -154,6 +154,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+SOCIALACCOUNT_AUTO_SIGNUP = True
+
 AUTH_PROFILE_MODULE = 'accounts.UserProfile' # just added, not sure
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
