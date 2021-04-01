@@ -7,5 +7,6 @@ from . views import ProfileView
 app_name = "social_app"
 urlpatterns = [
     path('', TemplateView.as_view(template_name="social_app/index.html")), # <--
-    path('profile/', ProfileView.as_view(), name="profile"),
+    path('profile/', views.profile_view, name="profile"),
+    path('profile/display',views.display_view, name="display")
 ]
