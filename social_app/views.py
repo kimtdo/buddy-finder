@@ -23,7 +23,6 @@ class ProfileView(ListView):
             b = self.request.POST.get('bio')
             c = self.request.POST.get('interests')
             d = self.request.FILES.get('img', False)
-            print(d)
-            p = Profile(user=self.request.user,name=n, gender=a, bio=b, interests=c, profile_pic=d)
+            p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=c, profile_pic=d)
             p.save()
             return HttpResponseRedirect("")
