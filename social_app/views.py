@@ -25,33 +25,3 @@ class ProfileView(ListView):
             p = Profile(user=self.request.user,gender=a, bio=b, interests=c, profile_pic=d)
             p.save()
             return HttpResponseRedirect("")
-
-    # def delete_user(self,form):
-    #  if request.method == 'POST':
-    #     form=DeleteForm(request.POST)
-    #     if form.is_valid():
-    #         deleted=form.request.POST['user']
-    #         Profile.objects.get(user=deleted).delete()
-    #         return HttpResponse('')
-    #     else:
-    #         form=DeleteForm()
-    #     return render(request,'social_app/profile.html',{'form':form})
-# def delete_user(request):
-#      if request.method == 'POST':
-#             deleted=request.POST.get('user')
-#             Profile.objects.get(user=deleted).delete()
-#             return HttpResponse('')
-
-
-
-###Reading in profile info from form###
-# def profiles(request):
-#     if request.method=='POST':
-#         a = request.POST.get('gender')
-#         b = request.POST.get('bio')
-#         c = request.POST.get('interests')
-#         d = request.POST.get('img')
-#         p = Profile(gender=a, bio=b, interests=c, profile_pic=d)
-#         p.save()
-    # return render(request, 'social_app/profile.html')
-
