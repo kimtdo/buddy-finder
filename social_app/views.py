@@ -18,12 +18,10 @@ class ProfileView(ListView):
         return context
     def post(self,request,*args,**kwargs):
         if self.request.method=='POST':
-            n = self.request.POST.get('name')
             a = self.request.POST.get('gender')
             b = self.request.POST.get('bio')
             c = self.request.POST.get('interests')
-            d = self.request.FILES.get('img', False)
-            print(d)
-            p = Profile(user=self.request.user,name=n, gender=a, bio=b, interests=c, profile_pic=d)
+            d = self.request.POST.get('img')
+            p = Profile(user=self.request.user,gender=a, bio=b, interests=c, profile_pic=d)
             p.save()
             return HttpResponseRedirect("")
