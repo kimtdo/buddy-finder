@@ -12,5 +12,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=1000, null=True, blank=True)
     gender = models.CharField(max_length=140, null=True, blank=True) 
-    profile_pic =  models.ImageField(upload_to='images', default="default.jpg")
+    profile_pic =  models.ImageField(upload_to='images', default="def.jpg")
     interests = MultiSelectField(null=True,choices=interest)
+    isReported = models.BooleanField(default=False)

@@ -37,13 +37,37 @@
         </div>
         <br>
         {% endfor %}
-
     </div>
 
     {% else %}
     <h3>CREATE PROFILE</h3>
     <div class="container-fluid">
-        <!--Create profile here-->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>GENDER</label>
+                <input type="text" class="form-control" name="gender" required="required">
+            </div><br>
+            <div class="form-group">
+                <label>BIO</label>
+                <input type="text" class="form-control" name="bio" required="required">
+            </div><br>
+            <div class="form-group">
+                <label>INTERESTS</label><br>
+                <input type="checkbox" name="interests" id="interest1">
+                <label for="interest1">Interest 1</label><br>
+                <input type="checkbox" name="interests" id="interest2">
+                <label for="interest2">Interest 2</label><br>
+                <input type="checkbox" name="interests" id="interest3">
+                <label for="interest3">Interest 3</label><br>
+            </div><br>
+            <div class="form-group">
+                <label>PROFILE PICTURE</label><br>
+                <input type="file" name="img" accept="image/*">
+            </div><br>
+            <br/>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form> 
     </div>
     {% endif %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -59,29 +83,3 @@
 
 </html>
 
-<!-- <form method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-        <label>GENDER</label>
-        <input type="text" class="form-control" name="gender" required="required">
-    </div><br>
-    <div class="form-group">
-        <label>BIO</label>
-        <input type="text" class="form-control" name="bio" required="required">
-    </div><br>
-    <div class="form-group">
-        <label>INTERESTS</label><br>
-        <input type="checkbox" name="interests" id="interest1">
-        <label for="interest1">Interest 1</label><br>
-        <input type="checkbox" name="interests" id="interest2">
-        <label for="interest2">Interest 2</label><br>
-        <input type="checkbox" name="interests" id="interest3">
-        <label for="interest3">Interest 3</label><br>
-    </div><br>
-    <div class="form-group">
-        <label>PROFILE PICTURE</label><br>
-        <input type="file" name="img" accept="image/*">
-    </div><br>
-    <br/>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
