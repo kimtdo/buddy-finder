@@ -5,12 +5,16 @@
 </head>
 <body>
     {% if exist %}
-        {% if user.isReported %} <!--Not working-->
+        {% if reported %} <!--Not working-->
             <h3>You have been reported. Your profile no longer exists.</h3>
         {% else %}
             <h3>YOU HAVE A PROFILE</h3> <!--temp placeholder-->
             <div class="container-fluid">
-                {{ form }}
+                <form action="display" method="post">
+                    {% csrf_token %}
+                See Profile
+                    <input type="submit">
+            </form>
                 <!--Display profile here-->
                 <!--Add Report button here-->
             </div>

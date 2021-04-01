@@ -20,14 +20,26 @@ class ProfileView(generic.ListView):
 def profile_view(request):
     context = {}
 
-    data = Profile()
-    form = ProfileForm(request.POST,instance=data)
+    a = Profile.objects.filter(user=request.user).exists()
+
+    form = ProfileForm(request.POST)
     if form.is_valid():
+        data = Profile()
+        data.name = form.cleaned_data['name']
+        data.bio = form.cleaned_data['bio']
+        data.gender = form.cleaned_data['gender']
+        data.interests = form.cleaned_data['interests']
         form.save()
 
-    context = {'form':form}
+    context = {'form': form}
+    context['exist'] = a
+    if (a == True):
+        b = Profile.objects.values_list('isReported', flat=True).get(user_id=a)
+        if (b == True):
+            context['reported'] = b
     return render(request, "social_app/profile.html", context)
 
+
 def display_view(request):
-    context={}
-    return render(request, "social_app/display.html",context)
+    context = {}
+    return render(request, "social_app/display.html", context)
