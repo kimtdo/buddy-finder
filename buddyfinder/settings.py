@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
 
     'django.contrib.sites',  # <--
     'social_app',  # <--
@@ -43,6 +43,9 @@ INSTALLED_APPS = (
     'allauth.socialaccount',  # <--
     'allauth.socialaccount.providers.google',  # <--
     'multiselectfield',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
 )
 
 MIDDLEWARE = [
@@ -161,3 +164,10 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile' # just added, not sure
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hnpqh5vsw',
+    'API_KEY': '448548274694864',
+    'API_SECRET': '_od1a4o437-6p2oySx-jYvz4kB4',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
