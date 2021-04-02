@@ -42,9 +42,9 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',  # <--
     'multiselectfield',
     'cloudinary_storage',
+    'cloudinary',
     'whitenoise.runserver_nostatic',#?
     'django.contrib.staticfiles',
-    'cloudinary',
 )
 
 MIDDLEWARE = [
