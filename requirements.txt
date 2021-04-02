@@ -23,7 +23,7 @@ packaging==20.8
 Pillow==8.1.2
 pipo==0.1.0
 pkginfo==1.7.0
-psycopg2
+psycopg2==2.7.7
 pycparser==2.20
 Pygments==2.7.4
 PyJWT==2.0.1
