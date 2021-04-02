@@ -79,23 +79,23 @@ WSGI_APPLICATION = 'buddyfinder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {     
-    'default': {         
-        'ENGINE': 'django.db.backends.postgresql',         
-        'NAME': 'db0a1t20dqa0o',         
-        'USER': 'rncrnyusashdks',         
-        'PASSWORD': 'c2cfba7675b4f2c3204fb91dc10cb224ae16cf7cc578a7e26cb932b80badd85e',         
-        'HOST': 'ec2-3-87-180-131.compute-1.amazonaws.com',         
-        'PORT': '5432',     
-        } 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# DATABASES = {     
+#     'default': {         
+#         'ENGINE': 'django.db.backends.postgresql',         
+#         'NAME': 'db0a1t20dqa0o',         
+#         'USER': 'rncrnyusashdks',         
+#         'PASSWORD': 'c2cfba7675b4f2c3204fb91dc10cb224ae16cf7cc578a7e26cb932b80badd85e',         
+#         'HOST': 'ec2-3-87-180-131.compute-1.amazonaws.com',         
+#         'PORT': '5432',     
+#         } 
+#     }
 
 
 # Password validation
