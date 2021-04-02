@@ -25,4 +25,4 @@ class ProfileView(ListView):
             d = self.request.FILES.get('img', False)
             p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=c, profile_pic=d)
             p.save()
-            return HttpResponseRedirect("")
+            return HttpResponseRedirect("/profile/")
