@@ -13,11 +13,29 @@
         <hr style="border-top: 7px solid #bbb;">
         <!--Display personal profile here-->
         <h2>My Profile</h2>
+        <div class="card" style="width: 18rem;">
+            {% if user.profile.profile_pic %}
+            <img class="card-img-top" src="{{ user.profile.profile_pic.url }}" alt="profile pic">
+            {% endif %}
+            <div class="card-body">
+                <h3 class="card-title">{{ user.profile.name }}</h3>
+                <h5>{{ user.profile.gender }}</h5>
+                <p class="card-text">Interests: {{ user.profile.interests }}</p>
+                <p class="card-text">{{ user.profile.bio }}</p>
+                <!--Add Report button here-->
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name='user' value='{{ profile.user }}'></input>
+                    <input type="submit" value='Report' class="btn btn-warning" disabled></input>
+                </form>
+            </div>
+        </div>
         <br>
         <hr style="border-top: 7px solid #bbb;">
         <!--Display all profiles for browsing-->
         <h2>Browse Profiles</h2>
         {% for profile in profiles %}
+        {% if profile.user != user.profile.user %}
         <div class="card" style="width: 18rem;">
             {% if profile.profile_pic %}
             <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
@@ -36,6 +54,7 @@
             </div>
         </div>
         <br>
+        {% endif %}
         {% endfor %}
     </div>
 
