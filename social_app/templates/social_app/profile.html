@@ -9,6 +9,8 @@
 <body>
     {% if exist %}
     <div class="container-fluid">
+        <a href="/">Home</a>
+        <br><br>
         <h1>Profile Page</h1>
         <hr style="border-top: 7px solid #bbb;">
         <!--Display personal profile here-->
@@ -59,7 +61,10 @@
     </div>
 
     {% else %}
+    <a href="/">Home</a>
+    <br><br>
     <h3>CREATE PROFILE</h3>
+    <br>
     <div class="container-fluid">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
