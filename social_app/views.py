@@ -21,8 +21,21 @@ class ProfileView(ListView):
             n = self.request.POST.get('name')
             a = self.request.POST.get('gender')
             b = self.request.POST.get('bio')
-            c = self.request.POST.get('interests')
+            one = self.request.POST.get('i1')
+            i=list
+            o=0
+            if(one=='on'):
+                o=1
+            two = self.request.POST.get('i2')
+            tw=0
+            if (two == 'on'):
+                tw=2
+            three = self.request.POST.get('i3')
+            th=0
+            if (three == 'on'):
+                th=3
             d = self.request.FILES.get('img', False)
-            p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=c, profile_pic=d)
+
+            p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests={o,tw,th}, profile_pic=d)
             p.save()
             return HttpResponseRedirect("/profile/")
