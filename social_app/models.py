@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
 # Create your models here.
-interest = ((1, '1'),
-            (2, '2'),
-            (3, '3'),
-            (4, '4'),
-            (5, '5'),
+interest = ((1, 'Sports'),
+            (2, 'Music'),
+            (3, 'Movies'),
+            (4, 'Cooking'),
+            (5, 'Reading'),
             (0, ''))
 
 class Profile(models.Model):
