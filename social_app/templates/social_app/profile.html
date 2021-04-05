@@ -24,12 +24,6 @@
                 <h5>{{ user.profile.gender }}</h5>
                 <p class="card-text">Interests: {{ user.profile.interests }}</p>
                 <p class="card-text">{{ user.profile.bio }}</p>
-                <!--Add Report button here-->
-                <form method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name='user' value='{{ profile.user }}'></input>
-                    <input type="submit" value='Report' class="btn btn-warning" disabled></input>
-                </form>
             </div>
         </div>
         <br>
@@ -81,13 +75,8 @@
                 <input type="text" class="form-control" name="bio" required="required">
             </div><br>
             <div class="form-group">
-                <label>INTERESTS</label><br>
-                <input type="checkbox" name="interests" id="interest1">
-                <label for="interest1">Interest 1</label><br>
-                <input type="checkbox" name="interests" id="interest2">
-                <label for="interest2">Interest 2</label><br>
-                <input type="checkbox" name="interests" id="interest3">
-                <label for="interest3">Interest 3</label><br>
+                <label>INTERESTS</label>
+                <input type="text" class="form-control" name="bio" required="required">
             </div><br>
             <div class="form-group">
                 <label>PROFILE PICTURE</label><br>
