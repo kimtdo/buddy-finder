@@ -24,12 +24,6 @@
                 <h5>{{ user.profile.gender }}</h5>
                 <p class="card-text">Interests: {{ user.profile.interests }}</p>
                 <p class="card-text">{{ user.profile.bio }}</p>
-                <!--Add Report button here-->
-                <form method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name='user' value='{{ profile.user }}'></input>
-                    <input type="submit" value='Report' class="btn btn-warning" disabled></input>
-                </form>
             </div>
         </div>
         <br>

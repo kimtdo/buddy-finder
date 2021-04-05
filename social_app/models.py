@@ -16,4 +16,5 @@ class Profile(models.Model):
     gender = models.CharField(max_length=140, null=True, blank=True) 
     profile_pic = models.ImageField(upload_to='images', default="def.jpg", null=True, blank=True)
     interests = MultiSelectField(null=True,choices=interest)
+
     # isReported = models.BooleanField(default=False)
