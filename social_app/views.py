@@ -21,8 +21,33 @@ class ProfileView(ListView):
             n = self.request.POST.get('name')
             a = self.request.POST.get('gender')
             b = self.request.POST.get('bio')
-            c = self.request.POST.get('interests')
+            one = self.request.POST.get('i1')
+            o=0
+            tw=0
+            th=0
+            fo=0
+            fi=0
+            i = list()
+            if(one=='on'):
+                o=1
+                i.append(o)
+            two = self.request.POST.get('i2')
+            if (two == 'on'):
+                tw=2
+                i.append(tw)
+            three = self.request.POST.get('i3')
+            if (three == 'on'):
+                th=3
+                i.append(th)
+            four = self.request.POST.get('i4')
+            if (four == 'on'):
+                fo = 4
+                i.append(fo)
+            five = self.request.POST.get('i5')
+            if (five == 'on'):
+                fi = 5
+                i.append(fi)
             d = self.request.FILES.get('img', False)
-            p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=c, profile_pic=d)
+            p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=i, profile_pic=d)
             p.save()
             return HttpResponseRedirect("/profile/")
