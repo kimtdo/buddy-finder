@@ -48,6 +48,9 @@ class ProfileView(ListView):
                 fi = 5
                 i.append(fi)
             d = self.request.FILES.get('img', False)
-            p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=i, profile_pic=d)
+            if d:
+                p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=i, profile_pic=d)
+            else:
+                p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=i)
             p.save()
             return HttpResponseRedirect("/profile/")
