@@ -6,7 +6,8 @@ interest = ((1, '1'),
             (2, '2'),
             (3, '3'),
             (4, '4'),
-            (5, '5'))
+            (5, '5'),
+            (0, ''))
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
