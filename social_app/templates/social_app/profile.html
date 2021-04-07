@@ -45,8 +45,7 @@
                 <!--Add Report button here-->
                 <form method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name='user' value='{{ profile.user }}'></input>
-                    <input type="submit" value='Report' class="btn btn-warning" disabled></input>
+                    <button type="submit">Report</button>
                 </form>
             </div>
         </div>

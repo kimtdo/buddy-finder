@@ -58,3 +58,4 @@ def filter_view(request):
             a = f[0]
             context['filter'] = a
     return render(request, "social_app/filter.html", context)
+

@@ -25,5 +25,5 @@ class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='images', default="default.webp", null=True, blank=True)
     interests = MultiSelectField(null=True,choices=interest)
     #ifilter = filterForm()
-   # isReported = models.BooleanField(default=False)
+    isReported = models.BooleanField(default=False)
 
