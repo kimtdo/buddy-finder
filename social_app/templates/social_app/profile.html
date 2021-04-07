@@ -30,8 +30,9 @@
         <hr style="border-top: 7px solid #bbb;">
         <!--Display all profiles for browsing-->
         <h2>Browse Profiles</h2>
-        {% for profile in profiles %}
-        {% if profile.user != user.profile.user %}
+        <a href="/filter/">Filter</a>
+            {% for profile in profiles %}
+            {% if profile.user != user.profile.user %}
         <div class="card" style="width: 18rem;">
             {% if profile.profile_pic %}
             <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
@@ -53,7 +54,6 @@
         {% endif %}
         {% endfor %}
     </div>
-
     {% else %}
     <a href="/">Home</a>
     <br><br>
