@@ -35,8 +35,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'cloudinary',
     'django.contrib.sites',  # <--
     'social_app',  # <--
@@ -130,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')#?
 STATIC_URL = '/static/'
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'#?
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'#?
 
 # Activate Django-Heroku.
 try:
@@ -163,8 +163,8 @@ SOCIALACCOUNT_PROVIDERS = {
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile' # just added, not sure
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'hnpqh5vsw',
