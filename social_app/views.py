@@ -59,3 +59,14 @@ def filter_view(request):
             context['filter'] = a
     return render(request, "social_app/filter.html", context)
 
+class ReportView(ListView):
+    model = Report
+    template_name = "social_app/report.html"
+    def post(self,request,*args,**kwargs):
+        if self.request.method=='POST':
+            u = self.request.POST.get('username')
+            m = self.request.POST.get('message')
+            print(m)
+            r = Report(username=u, message=m)
+            r.save()
+            return HttpResponseRedirect("/reported/")

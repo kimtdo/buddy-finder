@@ -27,3 +27,6 @@ class Profile(models.Model):
     #ifilter = filterForm()
     isReported = models.BooleanField(default=False)
 
+class Report(models.Model):
+    username = models.CharField(max_length=140, null=True, blank=True) 
+    message = models.CharField(max_length=1000, null=True, blank=True)
