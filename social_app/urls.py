@@ -12,4 +12,5 @@ urlpatterns = [
     path('filter/', filter_view, name="filter"),
     path('reportuser/', ReportView.as_view(), name="report"),
     path('reported/', TemplateView.as_view(template_name="social_app/done_report.html")),
+    path('browse/', TemplateView.as_view(template_name="social_app/browsing.html")),
 ]

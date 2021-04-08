@@ -1,23 +1,25 @@
-{ % extends profile.html }
-{% block content %}
+{% extends "profile.html" %}
+{% block browse %}
+<!--Display all profiles for browsing-->
+<h2>Browse Profiles</h2>
+<a href="/filter/">Filter</a>
 {% for profile in profiles %}
+{% if profile.user != user.profile.user %}
 <div class="card" style="width: 18rem;">
-    {% if profile.profile_pic.url %}
+    {% if profile.profile_pic %}
     <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
     {% endif %}
     <div class="card-body">
-        <h3 class="card-title">{{ profile.user.get_full_name }}</h3>
+        <h3 class="card-title">{{ profile.name }}</h3>
+        <h5>Username: {{ profile.user }}</h5>
         <h5>{{ profile.gender }}</h5>
-        <p class="card-text">{{ profile.interests }}</p>
+        <p class="card-text">Interests: {{ profile.interests }}</p>
         <p class="card-text">{{ profile.bio }}</p>
         <!--Add Report button here-->
-        <form method="POST">
-            {% csrf_token %}
-            <input type="hidden" name='user' value='{{ profile.user }}'></input>
-            <input type="submit" value='Report' class="btn btn-warning"></input>
-        </form>
+        <a href="/reportuser/"><button>Report</button></a>
     </div>
 </div>
 <br>
+{% endif %}
 {% endfor %}
 {% endblock %}
