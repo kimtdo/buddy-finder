@@ -35,16 +35,16 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.sites',  # <--
     'social_app',  # <--
     'allauth',  # <--
     'allauth.account',  # <--
     'allauth.socialaccount',  # <--
     'allauth.socialaccount.providers.google',  # <--
-    'multiselectfield',
-    # 'cloudinary', 
+    'multiselectfield', 
 )
 
 MIDDLEWARE = [
@@ -130,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')#?
 STATIC_URL = '/static/'
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'#?
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'#?
 
 # Activate Django-Heroku.
 try:
@@ -166,9 +166,10 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile' # just added, not sure
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'hnpqh5vsw',
-#     'API_KEY': '448548274694864',
-#     'API_SECRET': '_od1a4o437-6p2oySx-jYvz4kB4',
-# }
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hnpqh5vsw',
+    'API_KEY': '448548274694864',
+    'API_SECRET': '_od1a4o437-6p2oySx-jYvz4kB4',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
