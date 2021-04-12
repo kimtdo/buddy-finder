@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Messages</title>
+</head>
+
+<body>
+<div class="container-fluid">
+    <a href="{% url 'social_app:profile' %}">Profile</a>
+    <br><br>
+    <h1>{{title}}</h1>
+    <hr style="border-top: 7px solid #bbb;">
+
+    <!--Display all profiles for browsing-->
+    <div class="container">
+    {% for message in messages %}
+    {% if message.sender == me %}
+    <div class="row justify-content-end">
+        <div class="card text-white bg-primary">
+    {% else %}
+    <div class="row justify-content-start">
+        <div class="card bg-light">
+    {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ message.msg_content }}</h5>
+                <p class="card-text">Written: {{ message.created_at }}</p>
+            </div>
+        </div><br>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+    <br><br>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success" href="{% url 'social_app:compose' %}"><h5>✍ Write a message!</h5></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

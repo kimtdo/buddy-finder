@@ -1,0 +1,43 @@
+{% load static %}
+
+<script src="{% static 'social_app/js/bootstrap.bundle.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'social_app/css/bootstrap.css' %}">
+
+<form method="post">{% csrf_token %}
+    <br>
+    <div class="d-flex justify-content-center">
+        <h3>Leave a Message!</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.msg_content.label_tag }}
+                {{ form.msg_content }}
+                <hr>
+                <div class="form-group">
+                    {{ form.receiver.label_tag }}
+                    {{ form.receiver}}
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="d-flex justify-content-center">
+                        <input class="btn btn-success" type="submit" value="Send message">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                {% if form.errors %}
+                <br>
+                <div class="d-flex justify-content-center">
+                    <p>Cannot message a user without a profile</p>
+                </div>
+            </div>
+        </div>
+</form>
+
+
+
+{% endif %}
