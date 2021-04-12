@@ -5,6 +5,7 @@ from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.forms import ModelForm
+from django.db.models import Q
 
 
 # Create your views here.
@@ -78,19 +79,56 @@ class ReportView(ListView):
             r.save()
             return HttpResponseRedirect("/reported/")
 
-# class ThoughtForm(ModelForm):
-#     class Meta:
-#         model = Message
-#         fields = ['title', 'body']
-#         widgets = {
-#             'title': forms.TextInput(
-#                 attrs={
-#                     'class': 'form-control'}),
-#             'body': forms.Textarea(
-#                 attrs={
-#                     'class': 'form-control'}),
-#             }
-#
-# class ThoughtCreate(CreateView):
-#     model = Message
-#     form_class = ThoughtForm
+
+class MessageForm(ModelForm):
+    class Meta:
+        model = Message
+        fields = ['msg_content', 'receiver']
+        widgets = {
+            'msg_content': forms.Textarea(
+                attrs={
+                    'class': 'form-control'
+                }),
+            'receiver': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }),
+        }
+
+
+class MessageCreate(CreateView):
+    model = Message
+    form_class = MessageForm
+    initial = {'msg_content': 'test'}
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.sender = self.request.user
+        rec = str(obj.receiver.pk)
+        obj.save()
+        return HttpResponseRedirect("/message/" + rec)
+
+
+class MessageView(generic.ListView):
+    model = Message
+    template_name = 'social_app/messages.html'
+    context_object_name = 'messages'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(MessageView, self).get_context_data(**kwargs)
+        ctx['title'] = 'My Messages with ' + Profile.objects.get(user=User.objects.get(pk=self.kwargs['rec_id'])).name
+        ctx['me'] = self.request.user
+        return ctx
+
+    def get_queryset(self):
+        me = self.request.user
+        other = User.objects.get(pk=self.kwargs['rec_id'])
+        return Message.objects.filter(
+            Q(sender=me) | Q(sender=other), Q(receiver=me) | Q(receiver=other)
+        ).order_by('created_at')
+
+
+class AllMessageView(generic.ListView):
+    model = Message
+    template_name = 'social_app/messages.html'
+    context_object_name = 'messages'

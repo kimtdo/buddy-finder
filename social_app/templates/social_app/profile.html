@@ -2,105 +2,115 @@
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Profile</title>
 </head>
 
 <body>
-    {% if exist %}
-    <div class="container-fluid">
-        <a href="/">Home</a>
-        <br><br>
-        <h1>Profile Page</h1>
-        <hr style="border-top: 7px solid #bbb;">
-        <!--Display personal profile here-->
-        <h2>My Profile</h2>
-        <div class="card" style="width: 18rem;">
-            {% if user.profile.profile_pic %}
-            <img class="card-img-top" src="{{ user.profile.profile_pic.url }}" alt="profile pic">
-            {% endif %}
-            <div class="card-body">
-                <h3 class="card-title">{{ user.profile.name }}</h3>
-                <h5>{{ user.profile.gender }}</h5>
-                <p class="card-text">Interests: {{ user.profile.interests }}</p>
-                <p class="card-text">{{ user.profile.bio }}</p>
-            </div>
-        </div>
-        <br>
-        <hr style="border-top: 7px solid #bbb;">
-
-        <!--Display all profiles for browsing-->
-        <h2>Browse Profiles</h2>
-        <a href="/filter/">Filter</a>
-        {% for profile in profiles %}
-        {% if profile.user != user.profile.user %}
-        <div class="card" style="width: 18rem;">
-            {% if profile.profile_pic %}
-            <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
-            {% endif %}
-            <div class="card-body">
-                <h3 class="card-title">{{ profile.name }}</h3>
-                <h5>Username: {{ profile.user }}</h5>
-                <h5>{{ profile.gender }}</h5>
-                <p class="card-text">Interests: {{ profile.interests }}</p>
-                <p class="card-text">{{ profile.bio }}</p>
-                <!--Add Report button here-->
-                <a href="/reportuser/"><button>Report</button></a>
-            </div>
-        </div>
-        <br>
-        {% endif %}
-        {% endfor %}
-    </div>
-    {% else %}
-    <a href="/">Home</a>
+{% if exist %}
+<div class="fixed-top" style="background-color: white">
+    <a class="btn btn-primary float-left m-2" href="{% url 'social_app:home' %}">Home</a>
+    <a class="btn btn-primary float-right m-2" href="{% url 'social_app:compose' %}">✍ Write a message!</a>
+</div>
+<div class="container-fluid">
     <br><br>
-    <h3>CREATE PROFILE</h3>
-    <br>
-    <div class="container-fluid">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                <label>NAME</label>
-                <input type="text" class="form-control" name="name" required="required">
-            </div><br>
-            <div class="form-group">
-                <label>PRONOUNS</label>
-                <input type="text" class="form-control" name="gender" required="required">
-            </div><br>
-            <div class="form-group">
-                <label>BIO</label>
-                <input type="text" class="form-control" name="bio" required="required">
-            </div><br>
-            <div class="form-group">
-                <label>INTERESTS</label><br>
-                <input type="checkbox" name="i1" id=1>
-                <label for=1>Sports</label><br>
-                <input type="checkbox" name="i2" id=2>
-                <label for=2>Music</label><br>
-                <input type="checkbox" name="i3" id=3>
-                <label for=3>Movies</label><br>
-                <input type="checkbox" name="i4" id=4>
-                <label for=4>Cooking</label><br>
-                <input type="checkbox" name="i5" id=5>
-                <label for=5>Reading</label><br>
-            </div><br>
-            <div class="form-group">
-                <label>PROFILE PICTURE</label><br>
-                <input type="file" name="img" accept="image/*">
-            </div><br>
-            <br />
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    <h1>Profile Page</h1>
+
+    <hr style="border-top: 7px solid #bbb;">
+    <!--Display personal profile here-->
+    <h2>My Profile</h2>
+    <div class="card" style="width: 18rem;">
+        {% if user.profile.profile_pic %}
+        <img class="card-img-top" src="{{ user.profile.profile_pic.url }}" alt="profile pic">
+        {% endif %}
+        <div class="card-body">
+            <h3 class="card-title">{{ user.profile.name }}</h3>
+            <h5>{{ user.profile.gender }}</h5>
+            <p class="card-text">Interests: {{ user.profile.interests }}</p>
+            <p class="card-text">{{ user.profile.bio }}</p>
+        </div>
     </div>
+    <br>
+    <hr style="border-top: 7px solid #bbb;">
+
+    <!--Display all profiles for browsing-->
+    <h2>Browse Profiles</h2>
+    <a href="/filter/">Filter</a>
+    {% for profile in profiles %}
+    {% if profile.user != user.profile.user %}
+    <div class="card" style="width: 18rem;">
+        {% if profile.profile_pic %}
+        <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
+        {% endif %}
+        <div class="card-body">
+            <h3 class="card-title">{{ profile.name }}</h3>
+            <h5>Username: {{ profile.user }}</h5>
+            <h5>{{ profile.gender }}</h5>
+            <p class="card-text">Interests: {{ profile.interests }}</p>
+            <p class="card-text">{{ profile.bio }}</p>
+            <a class="card-link btn btn-success" href="{% url 'social_app:view_messages' profile.user.pk %}">View Messages</a>
+            <!--Add Report button here-->
+            <a class="card-link btn btn-warning" href="report">Report</a>
+        </div>
+    </div>
+    <br>
     {% endif %}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    {% endfor %}
+</div>
+{% else %}
+<a href="/">Home</a>
+<br><br>
+<h3>CREATE PROFILE</h3>
+<br>
+<div class="container-fluid">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>NAME</label>
+            <input type="text" class="form-control" name="name" required="required">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>PRONOUNS</label>
+            <input type="text" class="form-control" name="gender" required="required">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>BIO</label>
+            <input type="text" class="form-control" name="bio" required="required">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>INTERESTS</label><br>
+            <input type="checkbox" name="i1" id=1>
+            <label for=1>Sports</label><br>
+            <input type="checkbox" name="i2" id=2>
+            <label for=2>Music</label><br>
+            <input type="checkbox" name="i3" id=3>
+            <label for=3>Movies</label><br>
+            <input type="checkbox" name="i4" id=4>
+            <label for=4>Cooking</label><br>
+            <input type="checkbox" name="i5" id=5>
+            <label for=5>Reading</label><br>
+        </div>
+        <br>
+        <div class="form-group">
+            <label>PROFILE PICTURE</label><br>
+            <input type="file" name="img" accept="image/*">
+        </div>
+        <br>
+        <br/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endif %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>

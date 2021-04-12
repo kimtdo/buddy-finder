@@ -1,7 +1,9 @@
 from datetime import datetime
-from django.db import models
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from django import forms
 
 # Create your models here.
@@ -37,8 +39,14 @@ class Report(models.Model):
     username = models.CharField(max_length=140, null=True, blank=True)
     message = models.CharField(max_length=1000, null=True, blank=True)
 
+
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
-    reciever = models.ForeignKey(User, related_name="recipient", on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name="recipient", on_delete=models.CASCADE)
     msg_content = models.CharField(max_length=10000)
     created_at = models.DateTimeField('time sent', default=datetime.now)
+
+    def clean(self):
+        # Check if user has a profile
+        if len(Profile.objects.filter(user=self.receiver)) == 0:
+            raise ValidationError(_('Cannot message a user without a profile'))
