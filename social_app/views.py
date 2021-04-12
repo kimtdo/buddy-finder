@@ -3,6 +3,8 @@ from django.views.generic import TemplateView, ListView, DetailView,CreateView,F
 from .models import *
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
+from django import forms
+from django.forms import ModelForm
 
 # Create your views here.
 class ProfileView(ListView):
@@ -54,3 +56,20 @@ class ProfileView(ListView):
                 p = Profile(user=self.request.user, name=n, gender=a, bio=b, interests=i)
             p.save()
             return HttpResponseRedirect("/profile/")
+
+# class ThoughtForm(ModelForm):
+#     class Meta:
+#         model = Message
+#         fields = ['title', 'body']
+#         widgets = {
+#             'title': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'}),
+#             'body': forms.Textarea(
+#                 attrs={
+#                     'class': 'form-control'}),
+#             }
+#
+# class ThoughtCreate(CreateView):
+#     model = Message
+#     form_class = ThoughtForm
