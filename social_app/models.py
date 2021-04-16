@@ -31,8 +31,13 @@ class Profile(models.Model):
     gender = models.CharField(max_length=140, null=True, blank=True)
     profile_pic = models.ImageField(upload_to='images', default="default.webp", null=True, blank=True)
     interests = MultiSelectField(null=True, choices=interest)
+    friends = models.ManyToManyField(User, related_name='f')
     # ifilter = filterForm()
     isReported = models.BooleanField(default=False)
+
+class Friend_Request(models.Model):
+    from_user = models.ForeignKey(User, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='to_user', on_delete=models.CASCADE)
 
 
 class Report(models.Model):

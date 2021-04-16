@@ -9,6 +9,24 @@ from django.db.models import Q
 
 
 # Create your views here.
+def send_friend_request(request,userID):
+    from_user = request.user
+    to_user = User.objects.get(id=userID)
+    friend_request, created = Friend_Request.objects.get_or_create(from_user=from_user,to_user=to_user)
+    if created:
+        return HttpResponse('Friend Request Sent')
+    else:
+        return HttpResponse('Friend Request Already Sent')
+
+def accept_friend_request(request, requestID):
+    friend_request = Friend_Request.objects.get(id=requestID)
+    if friend_request.to_user == request.user:
+        friend_request.to_user.profile.friends.add(friend_request.from_user)
+        friend_request.from_user.profile.friends.add(friend_request.to_user)
+        friend_request.delete()
+        return HttpResponse('Friend Request Accepted')
+    else:
+        return HttpResponse('Friend Request Not Accepted')
 class ProfileView(ListView):
     model = Profile
     template_name = 'social_app/profile.html'
@@ -20,6 +38,13 @@ class ProfileView(ListView):
         context['exist'] = exist
         context['profiles'] = profiles
         # context['form'] = filterForm()
+        context['friend_requests']=Friend_Request.objects.all()
+       # context['friends'] = Profile.objects.filter(user=self.request.user).values('friends')
+        f = Profile.objects.filter(user=self.request.user).values('friends')
+        friends = list()
+        for i in f:
+            friends.append(i['friends'])
+        context['friends']=friends
         return context
 
     def post(self, request, *args, **kwargs):
