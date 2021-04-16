@@ -80,8 +80,23 @@ class ProfileView(ListView):
 def filter_view(request):
     context = {}
     profiles = Profile.objects.all()
+    #print(profiles)
     context['profiles'] = profiles
     context['form'] = filterForm()
+    p = Profile.objects.all().values('user_id')
+    ids =list()
+    for x in p:
+        ids.append(x['user_id'])
+    f = Profile.objects.filter(user=request.user).values('friends')
+    friends = list()
+    for i in f:
+        friends.append(i['friends'])
+    context['friends'] = friends
+    not_friends =list()
+    for d in ids:
+        if friends.count(d) == 0:
+            not_friends.append(d)
+    context['not_friends'] = not_friends
     if request.method == "POST":
         form = filterForm(request.POST)
         if form.is_valid():

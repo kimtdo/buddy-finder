@@ -14,6 +14,8 @@
 </form>
 {% for profile in profiles %}
         {% if profile.user != user.profile.user %}
+        {% for f in not_friends %}
+        {% if profile.user.id ==  f %}
         {% for text in profile.interests %}
         {% if text == filter %}
             <div class="card" style="width: 18rem;">
@@ -32,6 +34,8 @@
             </div>
         </div>
         <br>
+        {% endif %}
+        {% endfor %}
         {% endif %}
         {% endfor %}
         {% endif %}
