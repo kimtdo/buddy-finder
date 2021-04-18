@@ -12,14 +12,18 @@
   <h1>Buddy Finder App</h1>
   <p>Welcome, {{ user.username }}! You have successfully logged in.</p>
   <br>
-  <a href="{% url 'social_app:profile' %}">Click here to access profile page.</a>
+  <div class="d-grid gap-2 col-7 mx-auto">
+  <a class="btn btn-primary btn-lg btn-block" href="{% url 'social_app:profile' %}">Click here to access profile page.</a>
   <br><br><br>
-  <a href="{% url 'logout' %}">Logout</a>
+  <a class="btn btn-outline-primary btn-lg btn-block" href="{% url 'logout' %}">Logout</a>
+  </div>
   </div>
   {% else %}
   <div style="text-align:center">
   <h1 style="text-align:center">Buddy Finder App</h1>
-  <a style="text-align:center" href="{% provider_login_url 'google' %}">Login with Google</a>
+  <div class="d-grid gap-2 col-7 mx-auto">
+  <a class="btn btn-primary btn-lg btn-block" href="{% provider_login_url 'google' %}">Login with Google</a>
+  </div>
   </div>
   {% endif %}
 </body>
