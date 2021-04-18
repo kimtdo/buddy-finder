@@ -1,0 +1,19 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Send Friend Request</title>
+</head>
+<body>
+    <div style="text-align:center">
+    <br><br>
+    {% if created %}
+    <h5>Friend Request Sent!</h5>
+    {% else %}
+    <h5>Friend Request Already Sent</h5>
+    {% endif %}
+    <br><br>
+    <a class="btn btn-primary" href="{% url 'social_app:filter' %}">Return</a>
+    </div>
+</body>
+</html>
