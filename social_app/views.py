@@ -139,7 +139,7 @@ class MessageForm(ModelForm):
 class MessageCreate(CreateView):
     model = Message
     form_class = MessageForm
-    initial = {'msg_content': 'test'}
+    initial = {'msg_content': ''}
 
     def form_valid(self, form):
         obj = form.save(commit=False)
