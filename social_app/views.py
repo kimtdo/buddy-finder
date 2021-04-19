@@ -81,6 +81,7 @@ class ProfileView(ListView):
             p.save()
             return HttpResponseRedirect("/profile/")
 
+
 class EditProfileView(ListView):
     model = Profile
     template_name = 'social_app/edit.html'
@@ -111,7 +112,6 @@ class EditProfileView(ListView):
                 Profile.objects.filter(user=self.request.user).update(name=n, gender=a, bio=b, interests=i, profile_pic=d)
             else:
                 Profile.objects.filter(user=self.request.user).update(name=n, gender=a, bio=b, interests=i)
-            #p.save()
             return HttpResponseRedirect("/profile/")
 
 def filter_view(request):
