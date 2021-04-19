@@ -18,6 +18,7 @@
     <hr style="border-top: 7px solid #bbb;">
 
     <!--Display all profiles for browsing-->
+    {% if messages %}
     <div class="container">
 
         <div class="row">
@@ -36,6 +37,11 @@
             {% endfor %}
         </div>
     </div>
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <h3>You're all caught up!</h3>
+    </div>
+    {% endif %}
 </div>
 <br><br>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
