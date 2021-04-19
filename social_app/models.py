@@ -51,6 +51,7 @@ class Message(models.Model):
     receiver = models.ForeignKey(User, related_name="recipient", on_delete=models.CASCADE)
     msg_content = models.CharField(max_length=10000)
     created_at = models.DateTimeField('time sent', default=datetime.now)
+    isread = models.BooleanField(default=False)
 
     def clean(self):
         # Check if user has a profile

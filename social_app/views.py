@@ -195,12 +195,20 @@ class MessageView(generic.ListView):
     def get_queryset(self):
         me = self.request.user
         other = User.objects.get(pk=self.kwargs['rec_id'])
-        return Message.objects.filter(
+        to_ret = Message.objects.filter(
             (Q(sender=me) & Q(receiver=other)) | (Q(sender=other) & Q(receiver=me))
         ).order_by('created_at')
+        for message in to_ret:
+            if message.receiver == me:
+                message.isread = True
+                message.save()
+        return to_ret
 
 
 class AllMessageView(generic.ListView):
-    model = Message
-    template_name = 'social_app/index.html'
+    template_name = 'social_app/inbox.html'
     context_object_name = 'messages'
+
+    def get_queryset(self):
+        me = self.request.user
+        return Message.objects.filter(receiver=me, isread=False).order_by('created_at')
