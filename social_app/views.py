@@ -11,24 +11,27 @@ from django.urls import reverse_lazy
 
 
 # Create your views here.
-def send_friend_request(request,userID):
+def send_friend_request(request, userID):
     from_user = request.user
     to_user = User.objects.get(id=userID)
-    friend_request, created = Friend_Request.objects.get_or_create(from_user=from_user,to_user=to_user)
-    context = {'created': created }
+    friend_request, created = Friend_Request.objects.get_or_create(from_user=from_user, to_user=to_user)
+    context = {'created': created}
     return render(request, 'social_app/sendFR.html', context)
+
 
 def accept_friend_request(request, requestID):
     friend_request = Friend_Request.objects.get(id=requestID)
     forContext = friend_request.to_user == request.user
-    context = {'accepted': forContext }
+    context = {'accepted': forContext}
     if friend_request.to_user == request.user:
         friend_request.to_user.profile.friends.add(friend_request.from_user)
         friend_request.from_user.profile.friends.add(friend_request.to_user)
         friend_request.delete()
         return render(request, 'social_app/acceptFR.html', context)
     else:
-        return render(request, 'social_app/acceptFR.html', context) #not accepted
+        return render(request, 'social_app/acceptFR.html', context)  # not accepted
+
+
 class ProfileView(ListView):
     model = Profile
     template_name = 'social_app/profile.html'
@@ -40,13 +43,13 @@ class ProfileView(ListView):
         context['exist'] = exist
         context['profiles'] = profiles
         # context['form'] = filterForm()
-        context['friend_requests']=Friend_Request.objects.all()
-       # context['friends'] = Profile.objects.filter(user=self.request.user).values('friends')
+        context['friend_requests'] = Friend_Request.objects.all()
+        # context['friends'] = Profile.objects.filter(user=self.request.user).values('friends')
         f = Profile.objects.filter(user=self.request.user).values('friends')
         friends = list()
         for i in f:
             friends.append(i['friends'])
-        context['friends']=friends
+        context['friends'] = friends
         return context
 
     def post(self, request, *args, **kwargs):
@@ -119,11 +122,11 @@ class EditProfileView(ListView):
 def filter_view(request):
     context = {}
     profiles = Profile.objects.all()
-    #print(profiles)
+    # print(profiles)
     context['profiles'] = profiles
     context['form'] = filterForm()
     p = Profile.objects.all().values('user_id')
-    ids =list()
+    ids = list()
     for x in p:
         ids.append(x['user_id'])
     f = Profile.objects.filter(user=request.user).values('friends')
@@ -131,7 +134,7 @@ def filter_view(request):
     for i in f:
         friends.append(i['friends'])
     context['friends'] = friends
-    not_friends =list()
+    not_friends = list()
     for d in ids:
         if friends.count(d) == 0:
             not_friends.append(d)
@@ -175,14 +178,42 @@ class MessageForm(ModelForm):
         }
 
 
+class MessageForm2(ModelForm):
+    class Meta:
+        model = Message
+        fields = ['msg_content']
+        widgets = {
+            'msg_content': forms.Textarea(
+                attrs={
+                    'class': 'form-control'
+                }),
+        }
+
+
 class MessageCreate(CreateView):
     model = Message
     form_class = MessageForm
-    initial = {'msg_content': ''}
 
     def form_valid(self, form):
+        print(self.kwargs)
         obj = form.save(commit=False)
         obj.sender = self.request.user
+        rec = str(obj.receiver.pk)
+        obj.save()
+        return HttpResponseRedirect("/message/" + rec)
+
+
+class MessageCreateSpecific(CreateView):
+    model = Message
+    form_class = MessageForm
+    initial = {'receiver': User.objects.get(pk=1)}
+    template_name = 'social_app/message_form2.html'
+
+    def form_valid(self, form):
+        print(self.kwargs)
+        obj = form.save(commit=False)
+        obj.sender = self.request.user
+        obj.receiver = User.objects.get(pk=self.kwargs['rec_id'])
         rec = str(obj.receiver.pk)
         obj.save()
         return HttpResponseRedirect("/message/" + rec)
@@ -197,17 +228,26 @@ class MessageView(generic.ListView):
         ctx = super(MessageView, self).get_context_data(**kwargs)
         ctx['title'] = 'My Messages with ' + Profile.objects.get(user=User.objects.get(pk=self.kwargs['rec_id'])).name
         ctx['me'] = self.request.user
+        ctx['other_pk'] = self.kwargs['rec_id']
         return ctx
 
     def get_queryset(self):
         me = self.request.user
         other = User.objects.get(pk=self.kwargs['rec_id'])
-        return Message.objects.filter(
-            Q(sender=me) | Q(sender=other), Q(receiver=me) | Q(receiver=other)
+        to_ret = Message.objects.filter(
+            (Q(sender=me) & Q(receiver=other)) | (Q(sender=other) & Q(receiver=me))
         ).order_by('created_at')
+        for message in to_ret:
+            if message.receiver == me:
+                message.isread = True
+                message.save()
+        return to_ret
 
 
 class AllMessageView(generic.ListView):
-    model = Message
-    template_name = 'social_app/messages.html'
+    template_name = 'social_app/inbox.html'
     context_object_name = 'messages'
+
+    def get_queryset(self):
+        me = self.request.user
+        return Message.objects.filter(receiver=me, isread=False).order_by('created_at')
