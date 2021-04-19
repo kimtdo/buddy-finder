@@ -41,11 +41,14 @@
 
     <!--Display all profiles for browsing-->
     <h2>Friends List</h2>
-    <a href="/filter/">Find Friends</a>
+    <a class="btn btn-info" href="/filter/">Find Friends</a>
+    <br><br>
+    <div class="row">
     {% for profile in profiles %}
     {% if profile.user != user.profile.user %}
     {% for f in friends %}
     {% if profile.user.id ==  f %}
+    <div class="col-sm-3">
     <div class="card" style="width: 18rem;">
         {% if profile.profile_pic %}
         <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
@@ -61,11 +64,13 @@
             <a class="card-link btn btn-warning" href="/reportuser/">Report</a>
         </div>
     </div>
+    </div>
     <br>
     {% endif %}
     {% endfor %}
     {% endif %}
     {% endfor %}
+    </div>
 </div>
 {% else %}
 <a href="/">Home</a>
