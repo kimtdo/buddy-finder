@@ -111,13 +111,8 @@ class EditProfileView(ListView):
                 Profile.objects.filter(user=self.request.user).update(name=n, gender=a, bio=b, interests=i, profile_pic=d)
             else:
                 Profile.objects.filter(user=self.request.user).update(name=n, gender=a, bio=b, interests=i)
-            p.save()
+            #p.save()
             return HttpResponseRedirect("/profile/")
-
-# class UserEditView(generic.UpdateView):
-#     form_class = UserChangeForm
-#     template_name = 'social_app/edit.html'
-#     success_url = reverse_lazy("/profile/")
 
 def filter_view(request):
     context = {}
