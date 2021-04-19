@@ -108,10 +108,12 @@ class EditProfileView(ListView):
             if (five == 'on'):
                 i.append(5)
             d = self.request.FILES.get('img', False)
-            if d:
-                Profile.objects.filter(user=self.request.user).update(name=n, gender=a, bio=b, interests=i, profile_pic=d)
-            else:
-                Profile.objects.filter(user=self.request.user).update(name=n, gender=a, bio=b, interests=i)
+            p.profile_pic = d
+            p.name = n
+            p.gender = a
+            p.bio = b
+            p.interests = i
+            p.save()
             return HttpResponseRedirect("/profile/")
 
 def filter_view(request):
