@@ -26,6 +26,7 @@
     <hr style="border-top: 7px solid #bbb;">
     <!--Display personal profile here-->
     <h2>My Profile</h2>
+    <a class="btn btn-outline-primary" href="/edit/">Edit Profile</a>
     <div class="card" style="width: 18rem;">
         {% if user.profile.profile_pic %}
         <img class="card-img-top" src="{{ user.profile.profile_pic.url }}" alt="profile pic">
