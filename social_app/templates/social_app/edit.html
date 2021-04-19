@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <h3>EDIT PROFILE</h3>
+<br>
+<div class="container-fluid">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>NAME</label>
+            <input type="text" class="form-control" name="name" required="required" value={{user.profile.name}}>
+        </div>
+        <br>
+        <div class="form-group">
+            <label>PRONOUNS</label>
+            <input type="text" class="form-control" name="gender" required="required" value={{user.profile.gender}}>
+        </div>
+        <br>
+        <div class="form-group">
+            <label>BIO</label>
+            <input type="text" class="form-control" name="bio" required="required">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>INTERESTS</label><br>
+            <input type="checkbox" name="i1" id=1>
+            <label for=1>Sports</label><br>
+            <input type="checkbox" name="i2" id=2>
+            <label for=2>Music</label><br>
+            <input type="checkbox" name="i3" id=3>
+            <label for=3>Movies</label><br>
+            <input type="checkbox" name="i4" id=4>
+            <label for=4>Cooking</label><br>
+            <input type="checkbox" name="i5" id=5>
+            <label for=5>Reading</label><br>
+        </div>
+        <br>
+        <div class="form-group">
+            <label>PROFILE PICTURE</label><br>
+            <input type="file" name="img" accept="image/*">
+        </div>
+        <br>
+        <br/>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
