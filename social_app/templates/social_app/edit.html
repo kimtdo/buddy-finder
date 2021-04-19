@@ -13,17 +13,17 @@
         {% csrf_token %}
         <div class="form-group">
             <label>NAME</label>
-            <input type="text" class="form-control" name="name" required="required" value={{user.profile.name}}>
+            <input type="text" class="form-control" name="name" required="required" value="{{user.profile.name}}">
         </div>
         <br>
         <div class="form-group">
             <label>PRONOUNS</label>
-            <input type="text" class="form-control" name="gender" required="required" value={{user.profile.gender}}>
+            <input type="text" class="form-control" name="gender" required="required" value="{{user.profile.gender}}">
         </div>
         <br>
         <div class="form-group">
             <label>BIO</label>
-            <input type="text" class="form-control" name="bio" required="required" value={{user.profile.bio}}>
+            <input type="text" class="form-control" name="bio" required="required" value="{{user.profile.bio}}">
         </div>
         <br>
         <div class="form-group">
