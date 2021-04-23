@@ -136,12 +136,14 @@ def filter_view(request):
         if friends.count(d) == 0:
             not_friends.append(d)
     context['not_friends'] = not_friends
+    context['initial'] = True
     if request.method == "POST":
         form = filterForm(request.POST)
         if form.is_valid():
             f = form.cleaned_data['filter']
             a = f[0]
             context['filter'] = a
+            context['initial'] = False
     return render(request, "social_app/filter.html", context)
 
 
