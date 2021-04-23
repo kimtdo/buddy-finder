@@ -23,6 +23,8 @@ SECRET_KEY = 'c7q2dcv=$a=-puy^tnw9fyv7t!zcnlc)e%-y#p5-$n2a87ibu2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SECURE_SSL_REDIRECT = True
+
 ALLOWED_HOSTS = []
 
 
