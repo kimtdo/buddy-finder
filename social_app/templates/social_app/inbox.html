@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Messages</title>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="fixed-top d-flex justify-content-between" style="background-color: white">
+        <a class="btn btn-primary m-2" href="{% url 'social_app:profile' %}">Profile</a>
+    </div>
+    <br><br>
+    <h1>{{title}}</h1>
+    <hr style="border-top: 7px solid #bbb;">
+
+    <!--Display all profiles for browsing-->
+    {% if messages %}
+    <div class="container">
+
+        <div class="row">
+            {% for message in messages %}
+            <div class="col">
+                <div class="card bg-light m-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Message from {{ message.sender }}</h5>
+                        <h5 class="card-title">{{ message.msg_content }}</h5>
+                        <p class="card-text">Written: {{ message.created_at }}</p>
+                        <a class="btn btn-success stretched-link" href="{% url 'social_app:view_messages' message.sender.pk %}">View Thread</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <h3>You're all caught up!</h3>
+    </div>
+    {% endif %}
+</div>
+<br><br>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

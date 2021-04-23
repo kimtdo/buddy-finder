@@ -10,14 +10,17 @@
 <form method="POST">
         {% csrf_token %}
             {{ form.as_p }}
-        <input type="submit" value="Submit Filter">
+        <input type="submit" class="btn btn-outline-secondary" value="Submit Filter">
 </form>
+<hr>
+<div class="row">
 {% for profile in profiles %}
         {% if profile.user != user.profile.user %}
         {% for f in not_friends %}
         {% if profile.user.id ==  f %}
         {% for text in profile.interests %}
         {% if text == filter %}
+        <div class="col-sm-3">
             <div class="card" style="width: 18rem;">
             {% if profile.profile_pic %}
             <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="profile pic">
@@ -32,14 +35,15 @@
                 <!--Add Report button here-->
                 <a class="card-link btn btn-warning" href="/reportuser/">Report</a>
             </div>
+            </div>
         </div>
-        <br>
+        <br><br>
         {% endif %}
         {% endfor %}
         {% endif %}
         {% endfor %}
         {% endif %}
 {% endfor %}
-    </div>
+</div>
 </body>
 </html>

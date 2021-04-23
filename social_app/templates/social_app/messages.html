@@ -8,8 +8,8 @@
 
 <body>
 <div class="container-fluid">
-    <a href="{% url 'social_app:profile' %}">Profile</a>
-    <br><br>
+    <a class="btn btn-primary float-left m-2" href="{% url 'social_app:profile' %}">Profile</a>
+    <br><br><br>
     <h1>{{title}}</h1>
     <hr style="border-top: 7px solid #bbb;">
 
@@ -23,7 +23,7 @@
     <div class="row justify-content-start">
         <div class="card bg-light">
     {% endif %}
-            <div class="card-body">
+            <div class="card-body" style="width: 18rem;">
                 <h5 class="card-title">{{ message.msg_content }}</h5>
                 <p class="card-text">Written: {{ message.created_at }}</p>
             </div>
@@ -34,7 +34,7 @@
     </div>
     <br><br>
     <div class="d-flex justify-content-center">
-        <a class="btn btn-success" href="{% url 'social_app:compose' %}"><h5>✍ Write a message!</h5></a>
+        <a class="btn btn-success" href="{% url 'social_app:compose2' other_pk %}"><h5>✍ Write a message!</h5></a>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
