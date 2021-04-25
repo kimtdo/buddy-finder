@@ -53,7 +53,9 @@ class Message(models.Model):
     created_at = models.DateTimeField('time sent', default=datetime.now)
     isread = models.BooleanField(default=False)
 
-    def clean(self):
-        # Check if user has a profile
-        if len(Profile.objects.filter(user=self.receiver)) == 0:
-            raise ValidationError(_('Cannot message a user without a profile'))
+    # No longer needed
+    # def clean(self):
+    #     # Check if user has a profile
+    #     if self.receiver is not None:
+    #         if len(Profile.objects.filter(user=self.receiver)) == 0:
+    #             raise ValidationError(_('Cannot message a user without a profile'))
