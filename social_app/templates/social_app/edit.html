@@ -28,16 +28,41 @@
         <br>
         <div class="form-group">
             <label>INTERESTS</label><br>
-            <input type="checkbox" name="i1" id=1>
+            {% if one %}
+            <input type="checkbox" name="i1" id=1 checked>
             <label for=1>Sports</label><br>
-            <input type="checkbox" name="i2" id=2>
+            {% else %}
+            <input type="checkbox" name="i1" id=1a>
+            <label for=1>Sports</label><br>
+            {% endif %}
+            {% if two %}
+            <input type="checkbox" name="i2" id=2 checked>
             <label for=2>Music</label><br>
-            <input type="checkbox" name="i3" id=3>
+            {% else %}
+            <input type="checkbox" name="i2" id=2a>
+            <label for=2>Music</label><br>
+            {% endif %}
+            {% if three %}
+            <input type="checkbox" name="i3" id=3 checked>
             <label for=3>Movies</label><br>
-            <input type="checkbox" name="i4" id=4>
+            {% else %}
+            <input type="checkbox" name="i3" id=3a>
+            <label for=3>Movies</label><br>
+            {% endif %}
+            {% if four %}
+            <input type="checkbox" name="i4" id=4 checked>
             <label for=4>Cooking</label><br>
-            <input type="checkbox" name="i5" id=5>
+            {% else %}
+            <input type="checkbox" name="i4" id=4a>
+            <label for=4>Cooking</label><br>
+            {% endif %}
+            {% if five %}
+            <input type="checkbox" name="i5" id=5 checked>
             <label for=5>Reading</label><br>
+            {% else %}
+            <input type="checkbox" name="i5" id=5a>
+            <label for=5>Reading</label><br>
+            {% endif %}
         </div>
         <br>
         <div class="form-group">

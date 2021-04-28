@@ -85,6 +85,23 @@ class ProfileView(ListView):
 class EditProfileView(ListView):
     model = Profile
     template_name = 'social_app/edit.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super(EditProfileView, self).get_context_data(*args, **kwargs)
+        p = Profile.objects.get(user=self.request.user)
+        b = p.interests
+        #print(b)
+        for a in b:
+            if(a == '1'):
+                context['one'] = True
+            if (a == '2'):
+                context['two'] = True
+            if (a == '3'):
+                context['three'] = True
+            if (a == '4'):
+                context['four'] = True
+            if (a == '5'):
+                context['five'] = True
+        return context
     def post(self, request, *args, **kwargs):
         p = Profile.objects.get(user=self.request.user)
         if self.request.method == 'POST':
@@ -108,7 +125,11 @@ class EditProfileView(ListView):
             if (five == 'on'):
                 i.append(5)
             d = self.request.FILES.get('img', False)
-            p.profile_pic = d
+            #print(d)
+            if d == False:
+                print('fff')
+            else:
+                p.profile_pic = d
             p.name = n
             p.gender = a
             p.bio = b
@@ -203,11 +224,12 @@ class MessageCreate(CreateView):
 
 
 class MessageCreateSpecific(CreateView):
+    #template_name = 'social_app/message_form2.html'
     model = Message
     form_class = MessageForm
     initial = {'receiver': User.objects.get(pk=1)}
+    #print('o0o0o0o')
     template_name = 'social_app/message_form2.html'
-
     def form_valid(self, form):
         print(self.kwargs)
         obj = form.save(commit=False)
