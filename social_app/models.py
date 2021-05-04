@@ -23,7 +23,7 @@ i_choices = ((1, 'Sports'),
 class filterForm(forms.Form):
     filter = forms.MultipleChoiceField(choices=i_choices)
 
-
+# https://whizzoe.medium.com/in-5-mins-set-up-google-login-to-sign-up-users-on-django-e71d5c38f5d5
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=140, null=True, blank=True)
