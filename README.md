@@ -3,28 +3,30 @@ project-b-18 created by GitHub Classroom
 
 Features
 
-Login:
+    Login:
 
-Create Profile:
+Profile Creation
 
-Edit Profile:
+    Create Profile:
+
+    Edit Profile:
 
 Finding Friends
 
-  Filtering system:
+    Filtering system:
   
-  Sending Friend Requests:
+    Sending Friend Requests:
   
-  Recieving Friend Requests:
+    Recieving Friend Requests:
   
   
-Messages:
+Messages
 
-  Sending Messages:
+    Sending Messages:
   
-  Recieving Messages
   
-    Inbox:
+    Inbox: Recieve Messages by checking your inbox which shows all unread messages or go to view messages for each of your friends!
     
-Reporting Users:
+    
+    Reporting Users:
 
