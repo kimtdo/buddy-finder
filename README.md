@@ -10,6 +10,7 @@ Create Profile:
 Edit Profile:
 
 Finding Friends
+
   Filtering system:
   
   Sending Friend Requests:
@@ -18,9 +19,11 @@ Finding Friends
   
   
 Messages:
+
   Sending Messages:
   
   Recieving Messages
+  
     Inbox:
     
 Reporting Users:
