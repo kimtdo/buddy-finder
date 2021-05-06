@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 
 
 # Create your views here.
+#https://medium.com/analytics-vidhya/add-friends-with-689a2fa4e41d
 def send_friend_request(request, userID):
     from_user = request.user
     to_user = User.objects.get(id=userID)
@@ -18,7 +19,7 @@ def send_friend_request(request, userID):
     context = {'created': created}
     return render(request, 'social_app/sendFR.html', context)
 
-
+#https://medium.com/analytics-vidhya/add-friends-with-689a2fa4e41d
 def accept_friend_request(request, requestID):
     friend_request = Friend_Request.objects.get(id=requestID)
     forContext = friend_request.to_user == request.user
