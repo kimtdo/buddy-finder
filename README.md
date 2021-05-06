@@ -13,7 +13,7 @@ Profile Creation
 
 Finding Friends
 
-    Filtering system: When trying to find friends you can find the profiles that best suit you by filtering by whatever interests you wish
+    Filtering System: When trying to find friends you can find the profiles that best suit you by filtering by whatever interests you wish
   
     Sending Friend Requests: When you find a user you wish to connect with send them a friend request by a click of a button
   
