@@ -33,6 +33,7 @@ def accept_friend_request(request, requestID):
 
 # https://stackoverflow.com/questions/36950416/when-to-use-get-get-queryset-get-context-data-in-django
 # https://stackoverflow.com/questions/43986431/django-handling-form-without-the-form-model
+# https://stackoverflow.com/questions/12518517/request-post-getsth-vs-request-poststh-difference
 class ProfileView(ListView):
     model = Profile
     template_name = 'social_app/profile.html'
