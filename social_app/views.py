@@ -31,7 +31,8 @@ def accept_friend_request(request, requestID):
     else:
         return render(request, 'social_app/acceptFR.html', context)  # not accepted
 
-
+# https://stackoverflow.com/questions/36950416/when-to-use-get-get-queryset-get-context-data-in-django
+# https://stackoverflow.com/questions/43986431/django-handling-form-without-the-form-model
 class ProfileView(ListView):
     model = Profile
     template_name = 'social_app/profile.html'
