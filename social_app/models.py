@@ -19,7 +19,7 @@ i_choices = ((1, 'Sports'),
              (4, 'Cooking'),
              (5, 'Reading'))
 
-
+#https://docs.djangoproject.com/en/3.2/topics/forms/
 class filterForm(forms.Form):
     filter = forms.MultipleChoiceField(choices=i_choices)
 
