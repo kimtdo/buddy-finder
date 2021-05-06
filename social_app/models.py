@@ -30,7 +30,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=1000, null=True, blank=True)
     gender = models.CharField(max_length=140, null=True, blank=True)
     profile_pic = models.ImageField(upload_to='images', default="default.webp", null=True, blank=True)
-    interests = MultiSelectField(null=True, choices=interest)
+    interests = MultiSelectField(null=True, choices=interest) #https://pypi.org/project/django-multiselectfield/
     friends = models.ManyToManyField(User, related_name='f')
     # ifilter = filterForm()
     isReported = models.BooleanField(default=False)
